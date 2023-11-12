@@ -1,6 +1,8 @@
 import Product from './../models/product.model.js'
 import extend from 'lodash/extend.js'
 import errorHandler from './error.controller.js'
+
+//create and save product
 const create = async (req, res) => { 
 const product = new Product(req.body) 
 try {
@@ -14,6 +16,8 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
+
+//list all products
 const list = async (req, res) => { 
 try {
 let products = await Product.find().select('name updated created') 
@@ -24,6 +28,8 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
+
+//list product by id
 const productByID = async (req, res, next, id) => { 
 try {
 let product = await Product.findById(id) 
@@ -39,6 +45,8 @@ error: "Could not retrieve product"
 }) 
 }
 }
+
+//read products
 const read = (req, res) => {
     return res.json(req.profile) 
     }
@@ -55,6 +63,8 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
+
+//remove product
 const remove = async (req, res) => { 
     try {
     let product = req.profile
@@ -66,6 +76,8 @@ const remove = async (req, res) => {
     })
     } 
     }
+    
+    //remove all products
     const removeAll= async(req,res) =>{
         try {
             let deletedProducts = await Product.deleteMany() 

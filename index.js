@@ -5,7 +5,7 @@ const port = 3000;
 // Add your server routes and middleware here
 // For example:
  app.get('/', (req, res) => {
-   res.send('Welcom to the products page!');
+   res.send('Welcom to the G3clothing!');
  });
 
 app.listen(port, () => {
