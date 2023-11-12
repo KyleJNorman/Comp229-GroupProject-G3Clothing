@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
+//name requirments
 name: {
 type: String,
 trim: true,
 required: 'Name is required'
 },
+//email requirments
 email: {
 type: String,
 trim: true,
@@ -12,14 +14,17 @@ unique: 'Email already exists',
 match: [/.+\@.+\..+/, 'Please fill a valid email address'],
 required: 'Email is required'
 },
+//set created date
 created: {
 type: Date,
 default: Date.now
 },
+//set updated date
 updated: {
 type: Date,
 default: Date.now
 },
+//create hashed password
 hashed_password: {
 type: String,
 required: 'Password is required'
@@ -43,5 +48,5 @@ if (this.isNew && !this._password) {
 this.invalidate('password', 'Password is required');
 }
 }, null);
-//module.exports = mongoose.model('User', UserSchema);
+
 export default mongoose.model('User', UserSchema);

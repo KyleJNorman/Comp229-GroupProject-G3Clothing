@@ -1,5 +1,5 @@
 import express from 'express'
-	import productCtrl from '../controllers/product.controller.js' 
+import productCtrl from '../controllers/product.controller.js' 
 	const router = express.Router()
 	router.route('/api/product') 
 	.get(productCtrl.list)
