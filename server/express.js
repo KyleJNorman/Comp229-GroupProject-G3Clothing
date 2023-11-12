@@ -6,7 +6,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import Template from './../template.js'
 import productRoutes from './routes/product.routes.js'
-import usersRoutes from './routes/users.routes'
+import usersRoutes from './routes/users.routes.js'
 
 
 

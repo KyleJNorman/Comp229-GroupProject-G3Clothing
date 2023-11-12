@@ -1,4 +1,4 @@
-import User from '../models/user.model.js'
+import User from '../models/users.model.js'
 import extend from 'lodash/extend.js'
 import errorHandler from './error.controller.js'
 
@@ -20,7 +20,7 @@ error: errorHandler.getErrorMessage(err)
 //list all users
 const list = async (req, res) => { 
 try {
-let users = await User.find().select('name email    updated created') 
+let users = await User.find().select('name email updated created') 
 res.json(users)
 } catch (err) {
 return res.status(400).json({
