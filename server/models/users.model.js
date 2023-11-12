@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
 //name requirments
 name: {
@@ -34,9 +34,29 @@ salt: String
 UserSchema.virtual('password')
 .set(function(password) {
 this._password = password;
-//this.salt = this.makeSalt();
+this.salt = this.makeSalt();
 this.hashed_password = password;
 })
+/*
+UserSchema.methods = {
+    authenticate: function(plaintext) {
+        return this.encryptPassword(plaintext) === this.hashed_password
+    },
+    encryptPassword: function(password) {
+        if(!password) return''
+        try {
+            return crypto
+            .createHmac('sha1',this.salt)
+            .update(password)
+            .digest('hex')
+        } catch(err){
+            return ''
+        }
+    },
+    makeSalt: function() {
+        return Math.round((new Date().valueOf()*Math.random())) + ''
+    }
+}*/
 .get(function() {
 return this._password;
 });

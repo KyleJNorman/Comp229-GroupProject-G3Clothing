@@ -53,7 +53,7 @@ req.profile.salt = undefined
 return res.json(req.profile) 
 }
 
-//update user
+//update user by id
 const update = async (req, res) => { 
 try {
 let user = req.profile
@@ -70,14 +70,14 @@ error: errorHandler.getErrorMessage(err)
 } 
 }
 
-//delete user
+//delete user by id
 const remove = async (req, res) => { 
 try {
 let user = req.profile
 let deletedUser = await user.remove() 
 deletedUser.hashed_password = undefined 
 deletedUser.salt = undefined
-res.json(deletedUser) 
+res.json({message: "Deleted User"}) 
 } catch (err) {
 return res.status(400).json({
 error: errorHandler.getErrorMessage(err) 
