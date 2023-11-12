@@ -1,7 +1,9 @@
 import User from '../models/user.model.js'
-    import extend from 'lodash/extend.js'
-    import errorHandler from './error.controller.js'
-    const create = async (req, res) => { 
+import extend from 'lodash/extend.js'
+import errorHandler from './error.controller.js'
+
+//create and save user
+const create = async (req, res) => { 
 const user = new User(req.body) 
 try {
 await user.save()
@@ -14,17 +16,21 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
-    const list = async (req, res) => { 
-    try {
-    let users = await User.find().select('name email    updated created') 
-    res.json(users)
-    } catch (err) {
-    return res.status(400).json({
-    error: errorHandler.getErrorMessage(err) 
-    })
-    } 
-    }
-    const userByID = async (req, res, next, id) => { 
+
+//list all users
+const list = async (req, res) => { 
+try {
+let users = await User.find().select('name email    updated created') 
+res.json(users)
+} catch (err) {
+return res.status(400).json({
+error: errorHandler.getErrorMessage(err) 
+})
+} 
+}
+
+//list user by id
+const userByID = async (req, res, next, id) => { 
 try {
 let user = await User.findById(id) 
 if (!user)
@@ -39,13 +45,16 @@ error: "Could not retrieve user"
 }) 
 }
 }
-    const read = (req, res) => {
-    req.profile.hashed_password = undefined 
-    req.profile.salt = undefined
-    return res.json(req.profile) 
-    }
 
-    const update = async (req, res) => { 
+//read hashed password
+const read = (req, res) => {
+req.profile.hashed_password = undefined 
+req.profile.salt = undefined
+return res.json(req.profile) 
+}
+
+//update user
+const update = async (req, res) => { 
 try {
 let user = req.profile
 user = extend(user, req.body) 
@@ -60,7 +69,9 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
-    const remove = async (req, res) => { 
+
+//delete user
+const remove = async (req, res) => { 
 try {
 let user = req.profile
 let deletedUser = await user.remove() 
@@ -73,4 +84,5 @@ error: errorHandler.getErrorMessage(err)
 })
 } 
 }
-    export default { create, userByID, read, list, remove, update }
+
+export default { create, userByID, read, list, remove, update }
