@@ -49,4 +49,4 @@ this.invalidate('password', 'Password is required');
 }
 }, null);
 
-export default mongoose.model('User', UserSchema);
+export default mongoose.model('Users', UserSchema);

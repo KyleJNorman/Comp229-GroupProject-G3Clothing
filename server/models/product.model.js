@@ -30,12 +30,12 @@ const ProductSchema = new mongoose.Schema({
         trim: true,
         required: 'Category is required'
     },
-    //product created json model
+    //set created 
     created: {
         type: Date,
         default: Date.now
     },
-    //product updated json model
+    //set updated
     updated: {
         type: Date,
         default: Date.now

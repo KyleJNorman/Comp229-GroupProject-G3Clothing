@@ -6,6 +6,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import Template from './../template.js'
 import productRoutes from './routes/product.routes.js'
+import usersRoutes from './routes/users.routes'
 
 
 
@@ -19,6 +20,7 @@ res.status(200).send(Template())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', productRoutes)
+app.use('/', usersRoutes)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
