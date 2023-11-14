@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import Template from './../template.js'
 import productRoutes from './routes/product.routes.js'
 import usersRoutes from './routes/users.routes.js'
+import authRoutes from './routes/auth.routes'
 
 
 
@@ -21,10 +22,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', productRoutes)
 app.use('/', usersRoutes)
+app.use('/', authRoutes)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
 app.use(cors())
+app.use((err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+    res.status(401).json({"error" : err.name + ": " + err.message}) 
+    }else if (err) {
+    res.status(400).json({"error" : err.name + ": " + err.message}) 
+    console.log(err)
+    } 
+    })
 export default app
