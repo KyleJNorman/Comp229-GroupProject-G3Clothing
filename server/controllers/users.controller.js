@@ -47,11 +47,11 @@ error: "Could not retrieve user"
 }
 
 //read hashed password
-const read = (req, res) => {
-req.profile.hashed_password = undefined 
-req.profile.salt = undefined
-return res.json(req.profile) 
-}
+//const read = (req, res) => {
+//req.profile.hashed_password = undefined 
+//req.profile.salt = undefined
+//return res.json(req.profile) 
+//}
 
 //update user by id
 const update = async (req, res) => { 
@@ -74,9 +74,10 @@ error: errorHandler.getErrorMessage(err)
 const remove = async (req, res) => { 
 try {
 let user = req.profile
-let deletedUser = await user.remove() 
-deletedUser.hashed_password = undefined 
-deletedUser.salt = undefined
+console.log(user)
+let deletedUser = await user.deleteOne() 
+// deletedUser.hashed_password = undefined 
+// deletedUser.salt = undefined
 res.json({message: "Deleted User"}) 
 } catch (err) {
 return res.status(400).json({
