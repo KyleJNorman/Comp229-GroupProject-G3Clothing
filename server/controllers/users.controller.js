@@ -45,13 +45,18 @@ error: "Could not retrieve user"
 }) 
 }
 }
-
+/*
 //read hashed password
 const read = (req, res) => {
-//req.profile.hashed_password = undefined 
-//req.profile.salt = undefined
+req.profile.hashed_password = undefined 
+req.profile.salt = undefined
 return res.json(req.profile) 
 }
+*/
+
+const read = (req, res) => {
+    return res.json(req.profile) 
+    }
 
 //update user by id
 const update = async (req, res) => { 

@@ -7,7 +7,7 @@ import helmet from 'helmet'
 import Template from './../template.js'
 import productRoutes from './routes/product.routes.js'
 import usersRoutes from './routes/users.routes.js'
-import authRoutes from './routes/auth.routes'
+//import authRoutes from './routes/auth.routes.js'
 
 
 
@@ -29,6 +29,7 @@ app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
 app.use(cors())
+/*
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
     res.status(401).json({"error" : err.name + ": " + err.message}) 
@@ -37,4 +38,5 @@ app.use((err, req, res, next) => {
     console.log(err)
     } 
     })
+    */
 export default app
