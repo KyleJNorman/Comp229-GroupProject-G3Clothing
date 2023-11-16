@@ -1,4 +1,4 @@
-import User from './../models/users.model.js'
+import User from '../models/users.model.js'
 import jwt from 'jsonwebtoken'
 import { expressJwt } from 'express-jwt'
 import config from './../../config/config.js'
