@@ -47,5 +47,5 @@ router.param(':usersId', userCtrl.productByID)
 router.route('/api/users/:usersId').get(userCtrl.read)
 router.route('/api/users/:usersId').put(userCtrl.update)
 router.route('/api/users/:usersId').delete(userCtrl.remove)
-//.route('api/product').delete(productCtrl.removeAll)
+
 export default router
