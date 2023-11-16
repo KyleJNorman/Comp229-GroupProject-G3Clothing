@@ -26,6 +26,7 @@ router.route('/api/users/:userId').get(userCtrl.read)
 router.route('/api/users/:userId').put(userCtrl.update)
 router.route('/api/users/:userId').delete(userCtrl.remove)
 
+//this section is working but doesn't have auth controlls
 /*
 import express from 'express'
 import userCtrl from '../controllers/users.controller.js' 
