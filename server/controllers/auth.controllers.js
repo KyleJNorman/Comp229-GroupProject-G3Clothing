@@ -1,6 +1,6 @@
 import User from '../models/users.model.js'
 import jwt from 'jsonwebtoken'
-import { expressJwt } from 'express-jwt'
+import expressJwt from 'express-jwt'
 import config from './../../config/config.js'
 
 
@@ -34,11 +34,12 @@ return res.status('200').json({
 message: "signed out"
 }) 
 }
-const requireSignin = expressJwt({ 
-secret: config.jwtSecret, 
-algorithms: ["HS256"],
-userProperty: 'auth'
-})
+const requireSignin = {}
+// expressJwt({ 
+// secret: config.jwtSecret, 
+// algorithms: ["HS256"],
+// userProperty: 'auth'
+// })
 const hasAuthorization = (req, res, next) => { 
 const authorized = req.profile && req.auth
 && req.profile._id ==  req.auth._id 
