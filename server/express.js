@@ -1,4 +1,4 @@
-/*
+
 import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
@@ -8,17 +8,20 @@ import helmet from 'helmet'
 import Template from './../template.js'
 import productRoutes from './routes/product.routes.js'
 import usersRoutes from './routes/users.routes.js'
-//import authRoutes from './routes/auth.routes.js'
+import authRoutes from './routes/auth.routes.js'
+import path from 'path'
 
 
 
 const app = express()
+const CURRENT_WORKING_DIR = process.cwd()
 
 //...
 app.get('/', (req, res) => {
 res.status(200).send(Template()) 
 })
 //...
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', productRoutes)
@@ -41,8 +44,8 @@ app.use((err, req, res, next) => {
     })
     
 export default app
-*/
 
+/*
 import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
@@ -71,4 +74,4 @@ app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
 app.use(cors())
-export default app
+export default app*/

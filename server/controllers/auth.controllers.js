@@ -1,6 +1,6 @@
-import User from '../models/user.model.js'
+import User from './../models/users.model.js'
 import jwt from 'jsonwebtoken'
-import expressJwt from 'express-jwt'
+import { expressJwt } from 'express-jwt'
 import config from './../../config/config.js'
 
 
@@ -12,6 +12,7 @@ return res.status('401').json({ error: "User not found" })
 if (!user.authenticate(req.body.password)) {
 return res.status('401').send({ error: "Email and password don't match." })
 }
+
 const token = jwt.sign({ _id: user._id }, config.jwtSecret) 
 res.cookie('t', token, { expire: new Date() + 9999 }) 
 return res.json({
@@ -35,6 +36,7 @@ message: "signed out"
 }
 const requireSignin = expressJwt({ 
 secret: config.jwtSecret, 
+algorithms: ["HS256"],
 userProperty: 'auth'
 })
 const hasAuthorization = (req, res, next) => { 
