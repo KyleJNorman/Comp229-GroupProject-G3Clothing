@@ -1,9 +1,9 @@
 {
- "name": "mern_skeleton",
+ "name": "Group Project Group 3",
  "version": "1.0.0",
  "main": "index.js",
  "type": "module",
- "author": "Blessing",
+ "author": "Kyle Norman",
  "license": "MIT",
  "devDependencies": {
   "@babel/core": "^7.23.0",
