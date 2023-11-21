@@ -13,8 +13,14 @@ try {
     return res.status('401').send({ error: "Email and password don't match." })
 }
 
-const token = jwt.sign({ _id: user._id }, config.jwtSecret) 
-res.cookie('t', token, { expire: new Date() + 9999 }) 
+const token =  jwt.sign({
+    _id: user._id 
+  }, config.jwtSecret) 
+
+res.cookie('t', token, {
+     expire: new Date() + 9999 
+}) 
+
 return res.json({
 token, 
 user: {
@@ -23,6 +29,8 @@ name: user.name,
 email: user.email 
 }
 })
+
+
 } catch (err) {
 return res.status('401').json({ error: "Could not sign in" }) 
 }
@@ -35,16 +43,21 @@ message: "signed out"
 }) 
 }
 
-const requireSignin = {}
-// expressJwt({ 
-// secret: config.jwtSecret, 
-// userProperty: 'auth'
-// })
+const requireSignin=(req) =>{
+    const result =jwt.verify(req.headers.authorization.split(' ')[1],
+    
+        config.jwtSecret, 
+         {userProperty: 'auth'}
+         )
+         console.log(result)
+}
+
 
 
 const hasAuthorization = (req, res, next) => { 
 const authorized = req.profile && req.auth
 && req.profile._id == req.auth._id 
+console.log(authorized)
 if (!(authorized)) {
 return res.status('403').json({ 
 error: "User is not authorized"
