@@ -17,7 +17,7 @@ const token =  jwt.sign({
     _id: user._id 
   }, config.jwtSecret) 
 
-res.cookie('t', token, {
+   res.cookie('t', token, {
      expire: new Date() + 9999 
 }) 
 
@@ -36,33 +36,61 @@ return res.status('401').json({ error: "Could not sign in" })
 }
 }
 
-const signout = (req, res) => { 
-res.clearCookie("t")
-return res.status('200').json({ 
-message: "signed out"
-}) 
-}
+/**
+ * Sign out the user and clear the authentication cookie.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
+const signout = (req, res) => {
+    // Clear the authentication cookie
+    res.clearCookie("t");
 
-const requireSignin=(req) =>{
-    const result =jwt.verify(req.headers.authorization.split(' ')[1],
-    
-        config.jwtSecret, 
-         {userProperty: 'auth'}
-         )
-         console.log(result)
-}
+    // Return a JSON response with a success message
+    return res.status(200).json({
+        message: "signed out"
+    });
+};
 
 
+/**
+ * Verifies the JWT token from the request headers and logs the result.
+ *
+ * @param {Object} req - The request object containing the headers.
+ */
+const requireSignin = (req,res, next) => {
+    // Extract the JWT token from the authorization header
+    const token = req.headers.authorization.split(' ')[1];
 
-const hasAuthorization = (req, res, next) => { 
-const authorized = req.profile && req.auth
-&& req.profile._id == req.auth._id 
-console.log(authorized)
-if (!(authorized)) {
-return res.status('403').json({ 
-error: "User is not authorized"
-}) 
-} 
-next()
+    // Verify the JWT token using the jwtSecret and set the 'auth' property in the result object
+    const result = jwt.verify(token, config.jwtSecret, { userProperty: 'auth' });
+
+    req.auth = result;
+    next();
+};
+
+
+const hasAuthorization = (req, res, next) => {
+    /**
+     * Middleware to check if the user is authorized.
+     *
+     * @param {Object} req - The request object.
+     * @param {Object} res - The response object.
+     * @param {Function} next - The next middleware function.
+     */
+
+        // Check if the user is authorized
+        const authorized = req.profile && req.auth && req.profile._id == req.auth._id;
+
+        // Log the authorized status
+        console.log(authorized);
+        // If not authorized, return an error response
+        if (!authorized) {
+            return res.status(403).json({
+                error: "User is not authorized"
+            });
+        }
+        // Call the next middleware function
+        next();
 }
 export default { signin, signout, requireSignin, hasAuthorization }
