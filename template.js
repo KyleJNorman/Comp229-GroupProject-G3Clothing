@@ -11,7 +11,10 @@ export default () => {
     <link rel="icon" type="image/x-icon" href=server/assets/g3-clothing-favicon-color.png"> 
     </head>
     <body>
-    <div id="root">Welcome to the G3 Clothing!</div> 
+    <body>
+        <div id="root">Welcome to the G3 Clothing!</div> 
+        <script type="text/javascript" src="/dist/bundle.js"></script>
+    </body> 
     </body>
     </html>`
  }
