@@ -3,7 +3,7 @@
  "version": "1.0.0",
  "main": "index.js",
  "type": "module",
- "author": "Kyle Norman",
+ "author": "Victor Godwin",
  "license": "MIT",
  "devDependencies": {
   "@babel/core": "^7.23.0",

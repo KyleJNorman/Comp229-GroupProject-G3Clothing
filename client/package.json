@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start:frontend": "react-scripts start",
+    "start:backend": "node server.js",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "dev": "concurrently 'vite' \"nodemon ../server.js\"",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -36,5 +39,6 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "nodemon": "^2.0.22",
     "vite": "^4.3.9"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }

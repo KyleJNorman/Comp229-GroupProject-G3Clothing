@@ -34,6 +34,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
+helmet({
+    crossOriginResourcePolicy: false,
+})
 app.use(cors())
 
 //catch unautoried errors

@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const helmet = require('helmet');
+const cors = require('cors');
 
-// Add your server routes and middleware here
-// For example:
+
+app.use(cors());
+app.options('*', cors());
  app.get('/', (req, res) => {
-   res.send('Welcom to the G3clothing!');
+   res.send('Welcome to the G3clothing!');
  });
 
 app.listen(port, () => {
