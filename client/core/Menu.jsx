@@ -48,6 +48,9 @@ const Menu = withRouter(({history}) => (
       />
         </Link>
       </div>
+      <Link to="/users">
+        <Button style={isActive(history, "/users")}>Users</Button>
+      </Link>
       <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
       {
         !auth.isAuthenticated() && (<span>
