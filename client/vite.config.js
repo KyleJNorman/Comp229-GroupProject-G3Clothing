@@ -22,12 +22,12 @@ export default defineConfig({
     host: true,
     strictPort: true,
     port: 8000,
-    proxy: {
-      '/api': {
-        target: `http://localhost:${PORT}`,
-        changeOrigin: true,
-      },
-    },
+    // proxy: {
+    //   '/api': {
+    //     target: `http://localhost:${PORT}`,
+    //     changeOrigin: true,
+    //   },
+    // },
   },
   /*
   build: {
