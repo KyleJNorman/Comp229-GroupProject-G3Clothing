@@ -19,6 +19,9 @@ export default defineConfig({
     }
   )],
   server: {
+    host: true,
+    strictPort: true,
+    port: 8000,
     proxy: {
       '/api': {
         target: `http://localhost:${PORT}`,
@@ -38,3 +41,5 @@ export default defineConfig({
   outDir: '../dist/app'
  }
 });
+
+
