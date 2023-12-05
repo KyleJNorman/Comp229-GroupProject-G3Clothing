@@ -1,7 +1,7 @@
 const signin = async (user) => {
 try {
     console.log(user)
-let response = await fetch('/api/auth/signin', {
+let response = await fetch('https://g3-clothing-backend-api-506d32c2173a.herokuapp.com/auth/signin', {
     method: 'POST',
     headers: {
         Accept: 'application/json',
@@ -26,7 +26,7 @@ console.log(err)
  */
 const signout = async () => {
     try {
-        let response = await fetch('/api/auth/signout/', { method: 'GET' })
+        let response = await fetch('https://g3-clothing-backend-api-506d32c2173a.herokuapp.com/auth/signout/', { method: 'GET' })
         return await response.json()
     } catch (err) {
         console.log(err)
@@ -34,3 +34,5 @@ const signout = async () => {
 }
 
 export { signin, signout }
+
+https://g3-clothing-backend-api-506d32c2173a.herokuapp.com/
