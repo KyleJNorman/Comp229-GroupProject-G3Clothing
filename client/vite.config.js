@@ -21,7 +21,7 @@ export default defineConfig({
   server: {
     host: true,
     strictPort: true,
-    port: 8000,
+    port: 5173,
     // proxy: {
     //   '/api': {
     //     target: `http://localhost:${PORT}`,
@@ -29,17 +29,18 @@ export default defineConfig({
     //   },
     // },
   },
-  /*
+  
   build: {
     manifest: true,
     rollupOptions: {
       input: "./src/main.jsx",
     },
   },
-  */
+  /*
  build: {
   outDir: '../dist/app'
  }
+ */
 });
 
 
